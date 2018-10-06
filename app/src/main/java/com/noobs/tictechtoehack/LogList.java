@@ -34,9 +34,6 @@ public class LogList extends AppCompatActivity {
         toolbar.setTitle("Logs");
         setSupportActionBar(toolbar);
 
-        Intent service = new Intent(getApplicationContext(), ClipBoardMonitor.class);
-        startService(service);
-
         listView=(ListView)findViewById(R.id.list);
 
         dataModels = new ArrayList<>();
