@@ -18,12 +18,18 @@ public class ClipBoard extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_clip_board);
-        File dir=new File(path);
-        dir.mkdirs();
-
-        //Toast.makeText(getApplicationContext(),"Application has started!",Toast.LENGTH_SHORT).show();
-        Intent service = new Intent(getApplicationContext(), ClipBoardMonitor.class);
-        startService(service);
+        
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        if (!prefs.getBoolean("firstTime", false)) {
+            File dir=new File(path);
+            dir.mkdirs();
+            Intent service = new Intent(getApplicationContext(), ClipBoardMonitor.class);
+            startService(service);
+            SharedPreferences.Editor editor = prefs.edit();
+            editor.putBoolean("firstTime", true);
+            editor.commit();
+            finish();
+        }
 
         Intent log = new Intent(ClipBoard.this, LogList.class);
         startActivity(log);
