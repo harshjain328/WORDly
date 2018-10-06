@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">WORDly</string>
+    <string name="title_activity_log_list">LogList</string>
+</resources>
